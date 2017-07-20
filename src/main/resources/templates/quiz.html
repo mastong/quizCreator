@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Quiz Creator</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link rel="stylesheet" href="../css/template.css"></link>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+	</head>
+	<body>
+		<div class="headband">
+			<a href="/logout" class="logout">Log out</a>
+		</div>
+		<div  class="starter-template">
+			<div>
+				<h1>Welcome XXX</h1>
+				<br/>
+				Selected quiz 
+				<select name="quizSelector">
+					<option th:each="quiz : ${quizzes}" 
+              				th:value="${quiz.name}" 
+              				th:text="${quiz.name}">My option</option>
+				</select>
+				<br/>
+				<form action="#" th:action="@{/quiz/newquestion}" method="get">
+					<input type="hidden" name="quizName" value="Test Quiz"></input>
+					<button type="submit" class="btn btn-default">Add question</button>
+				</form>
+			</div>
+			<div style="padding-top: 5%;">
+				<table style="display:inline;" class="table table-striped">
+					<thead>
+						<tr>
+							<td>Statement</td>
+							<td>Edit</td>
+							<td>Delete</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="question : ${questions}">
+							<td><span th:text="${question.statement}"></span></td>
+							<td><!-- a th:href="@{/quiz/editquestion(questionId=${question.id})}">Edit</a-->
+								<form action="#" th:action="@{/quiz/editquestion}" method="get">
+									<input type="hidden" name="questionId" th:value="${question.id}"></input>
+									<button type="submit" class="btn btn-default">Edit</button>
+								</form>
+							</td>
+							<td>
+							<form action="#" th:action="@{/quiz/deletequestion}" method="get">
+								<input type="hidden" name="questionId" th:value="${question.id}"></input>
+								<button type="submit" class="btn btn-default">Delete</button>
+							</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

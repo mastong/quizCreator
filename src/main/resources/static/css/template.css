@@ -1,0 +1,47 @@
+/* Generic */
+.starter-template {
+	padding: 40px 15px;
+	text-align: center;
+}
+
+.error{
+	color: red;
+}
+
+.fieldError{
+	background-color: red;
+}
+
+
+.buttonDiv{
+	text-align: right;
+}
+
+.headband{
+	text-align: right;
+}
+
+.logout{
+	margin-right: 10px;
+}
+
+/* Create user form*/
+.createUserForm{
+	display: inline-block;
+    width: 30%;
+	text-align: left;
+}
+
+/* Login form */
+.loginForm{
+	display: inline-block;
+    width: 30%;
+	text-align: left;
+}
+
+/* Question form */
+.questionForm{
+	display: inline-block;
+    width: 50%;
+	text-align: left;
+}

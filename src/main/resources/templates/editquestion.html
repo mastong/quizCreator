@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Quiz Creator</title>
+	    <link rel="stylesheet" href="../css/template.css"></link>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	    <script src="../js/file.js"></script>
+	</head>
+	<body>
+		<div  class="starter-template">
+			<div>
+				<h1>Edit your question</h1>
+			</div>
+			<form action="#" th:action="@{/quiz/updatequestion}" th:object="${question}" enctype="multipart/form-data" method="post" class="questionForm">
+				<input type="hidden" th:field="*{id}"></input>
+				<input type="hidden" name="quizName" th:value="${quizName}"></input>
+				<div th:class="${#fields.hasErrors('statement')}? has-error">
+					<label class="control-label" for="statement">Statement</label>
+					<input type="text" th:field="*{statement}" class="form-control" id="statement" />
+					<p class="alert alert-danger" th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}"></p>
+				</div>
+				<div th:class="${#fields.hasErrors('statementImg')}? has-error">
+					<label class="control-label" for="test">Statement image</label>
+					<div style="display:flex">
+						<input type="file" name="statementImgFile" id="statementImgFile" style="display:none;"/>
+						<input type="text" th:field="*{statementImg}" class="form-control" id="statementImg" readonly="true"/>
+						<label for="statementImgFile">New file...</label>
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('statementImg')}" th:errors="*{statementImg}"></p>
+					</div>
+				</div>
+				<div th:class="${#fields.hasErrors('statementAudio')}? has-error">
+					<label class="control-label" for="statementAudio">Statement audio</label>
+					<div style="display:flex">
+						<input type="file" name="statementAudioFile" id="statementAudioFile" style="display:none;"/>
+						<input type="text" th:field="*{statementAudio}" class="form-control" id="statementAudio" readonly="true"/>
+						<label for="statementAudioFile">New file...</label>
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('statementAudio')}" th:errors="*{statementAudio}"></p>
+					</div>
+				</div>
+				<div th:class="${#fields.hasErrors('answer')}? has-error">
+					<label class="control-label" for="answer">Answer</label>
+					<input type="text" th:field="*{answer}" class="form-control" id="answer" />
+					<p class="alert alert-danger" th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}"></p>
+				</div>
+				<div th:class="${#fields.hasErrors('answerImg')}? has-error">
+					<label class="control-label" for="answerImg">Answer image</label>
+					<div style="display:flex">
+						<input type="file" name="answerImgFile" id="answerImgFile" style="display:none;"/>
+						<input type="text" th:field="*{answerImg}" class="form-control" id="answerImg" readonly="true"/>
+						<label for="answerImgFile">New file...</label>
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('answerImg')}" th:errors="*{answerImg}"></p>
+					</div>
+				</div>
+				<div th:class="${#fields.hasErrors('answerAudio')}? has-error">
+					<label class="control-label" for="answerAudio">Answer audio</label>
+					<div style="display:flex">
+						<input type="file" name="answerAudioFile" id="answerAudioFile" style="display:none;"/>
+						<input type="text" th:field="*{answerAudio}" class="form-control" id="answerAudio" readonly="true"/>
+						<label for="answerAudioFile">New file...</label>
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('answerAudio')}" th:errors="*{answerAudio}"></p>
+					</div>
+				</div>
+				<div th:class="${#fields.hasErrors('point')}? has-error">
+					<label class="control-label" for="point">Points</label>
+					<input type="text" th:field="*{point}" class="form-control" id="point" />
+					<p class="alert alert-danger" th:if="${#fields.hasErrors('point')}" th:errors="*{point}"></p>
+				</div>
+				<div class="buttonDiv">
+					<button type="submit" class="btn btn-default">Validate</button>
+					<button type="submit" th:formaction="@{/quiz/list}" th:formmethod="get" class="btn btn-default">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

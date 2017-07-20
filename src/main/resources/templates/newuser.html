@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Quiz Creator</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link rel="stylesheet" href="css/template.css"></link>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+	</head>
+	<body>
+		<div  class="starter-template">
+			<div>
+				<h1>Create your account</h1>
+			</div>
+			<div class="error">
+				<span th:text="${myErrors}"></span>
+			</div>
+			<form action="#" th:action="@{/createuser}" method="post" th:object="${user}" class="createUserForm">
+				<div th:class="${#fields.hasErrors('login')}? has-error">
+					<label class="control-label" for="login">Login</label>
+					<input type="text" th:field="*{login}" class="form-control" id="login" />
+				</div>
+				<div th:class="${#fields.hasErrors('passwordHash')}? has-error">
+					<label class="control-label" for="passwordHash">Password</label>
+					<input type="text" th:field="*{passwordHash}" class="form-control" id="passwordHash" />
+				</div>
+				<div class="buttonDiv">
+					<button type="submit" class="btn btn-default">Create</button>
+					<button type="submit" th:formaction="@{/}" th:formmethod="get" class="btn btn-default">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
